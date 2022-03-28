@@ -9,7 +9,6 @@
 
 <script>
 import { mapState } from 'vuex'
-// eslint-disable-next-line import/extensions,import/no-unresolved
 import SliderHeadline from "@/components/Slider.vue";
 
 export default {
@@ -20,9 +19,7 @@ export default {
   computed: {
     ...mapState(["headlines"]),
   },
-  data: () => ({
 
-  }),
 }
 </script>
 
