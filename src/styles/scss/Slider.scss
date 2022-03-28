@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,700;1,800&display=swap');
+
+
+.manatal-slider{
+  &__card{
+    &-author{
+      position: absolute;
+      left: 16px;
+      top: 100px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    &-title{
+      position: absolute;
+      left: 16px;
+      top: 123px;
+      color: #ffff;
+      word-break: break-word;
+      width: 280px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 21px;
+    }
+    &-desc{
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      color: white;
+      max-width: 286px;
+    }
+  }
+}

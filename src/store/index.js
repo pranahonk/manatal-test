@@ -23,7 +23,6 @@ export default new Vuex.Store({
             axios
                 .get(`https://newsapi.org/v2/top-headliness?country=us&apiKey=${process.env.VUE_APP_API_KEY}`)
                 .then((response) => {
-                    console.log(response)
                     commit("SET_CHARACTERS", response.data.results);
                 });
         },

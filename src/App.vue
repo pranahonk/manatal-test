@@ -30,7 +30,7 @@
 
     <v-main>
       <v-container>
-        <h3 class="Manatal__headline mb-2">Headline News</h3>
+        <h3 class="manatal__headline mb-4">Headline News</h3>
         <slider-headline :headline-data="headlines" />
       </v-container>
     </v-main>
@@ -52,6 +52,7 @@ export default {
     axios
         .get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.VUE_APP_API_KEY}`)
         .then((response) => {
+          console.log(response.data.articles)
           this.headlines = response.data.articles
         })
   },

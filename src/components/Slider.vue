@@ -13,20 +13,30 @@
         <v-card
             elevation="4"
             rounded="8"
-            class="mr-3"
+            class="mr-3 p-relative manatal-slider__card"
         >
           <v-img
               lazy-src="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
               height="300px"
               width="80vw"
+              gradient="179.66deg, rgba(98, 98, 98, 0.35) 50%, #000000 99.7%"
               :src="handleImage(n.urlToImage)"
               error="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
           ></v-img>
+          <p class="subtitle-2 manatal-slider__card-author">by {{setAuthor(n.author)}}</p>
+          <p class="manatal-slider__card-title">{{n.title}}</p>
+          <p class="body-2 d-inline-block text-truncate subtitle-1 manatal-slider__card-desc">
+            {{n.description}}
+          </p>
         </v-card>
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
 </template>
+
+<style lang="scss">
+  @import "../styles/scss/Slider";
+</style>
 
 <script>
 export default {
@@ -37,15 +47,15 @@ export default {
   data: () => ({
     model: null,
   }),
-  beforeMount() {
-    console.log(this.headlineData)
-  },
   methods: {
     handleImage(e) {
       if (e) {
         return e
       }
         return "https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
+    },
+    setAuthor(author) {
+      return author ?? "Author"
     },
   },
 };
