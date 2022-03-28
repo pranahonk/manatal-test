@@ -25,10 +25,12 @@
               error="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
               class="manatal-slider__card-image"
           ></v-img>
-          <p class="subtitle-2 manatal-slider__card-author">by {{setAuthor(n.author)}}</p>
+            <p class="subtitle-2 manatal-slider__card-author">
+              by {{setAuthor(n.author) | setTruncate(25)}}
+            </p>
           <p class="manatal-slider__card-title">{{n.title}}</p>
-          <p class="body-2 d-inline-block text-truncate subtitle-1 manatal-slider__card-desc">
-            {{n.description}}
+          <p class="body-2 d-inline-block subtitle-1 manatal-slider__card-desc">
+            {{n.description | setTruncate(38)}}
           </p>
         </v-card>
       </v-slide-item>
@@ -64,6 +66,15 @@ export default {
     },
     getSelectedNews(title) {
       router.push({ path: `/news/detail/${getURLNews(title)}` })
+    },
+  },
+  filters: {
+    setTruncate: (str, num) => {
+      if (str.length <= num) {
+        return str
+      }
+
+      return `${str.slice(0, num)}...`
     },
   },
 };

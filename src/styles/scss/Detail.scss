@@ -1,0 +1,62 @@
+.manatal{
+  font-family: 'Newsreader', serif;
+    &-detail{
+      &__layout{
+        position: absolute;
+        height: 50px;
+        left: 0;
+        right: 0;
+        top: 367px;
+        background: #FFFFFF;
+        border-radius: 24px 24px 0 0;
+        z-index: 0;
+      }
+
+      &__box{
+        position: absolute;
+        height: 141px;
+        left: 32px;
+        right: 32px;
+        top: 333px;
+        background: rgba(245, 245, 245, 0.5);
+        background-blend-mode: luminosity;
+        backdrop-filter: blur(81.5485px);
+        border-radius: 16px;
+        color: #2E0505;
+        z-index: 1;
+
+        &-date{
+          font-family: 'Newsreader', serif;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 19px;
+          position: relative;
+          top: 15px;
+          margin: 0 24px;
+        }
+
+        &-title{
+          font-family: 'Newsreader', serif;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 19px;
+          position: relative;
+          top: 5px;
+          margin: 0 24px;
+        }
+
+        &-author{
+          font-family: 'Newsreader', serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 10px;
+          color: #2E0505;
+          position: relative;
+          top: 0;
+          margin: 0 24px;
+        }
+      }
+    }
+}

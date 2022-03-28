@@ -31,7 +31,6 @@ export default new Vuex.Store({
                     commit("SET_HEADLINES", response.data.articles);
                 });
         },
-        // eslint-disable-next-line no-unused-vars
         getNewsDetail: ({ commit, state }, payload) => {
             if (state.headlines.length) {
                 const indx = state.headlines.findIndex((x) => getURLNews(x.title) === payload);
