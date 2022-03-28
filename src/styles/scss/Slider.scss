@@ -3,6 +3,9 @@
 
 .manatal-slider{
   &__card{
+    &-image{
+      border-bottom-right-radius: 24px;
+    }
     &-author{
       position: absolute;
       left: 16px;

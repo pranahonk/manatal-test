@@ -37,8 +37,15 @@
 </style>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: 'App',
-
+  computed: {
+    ...mapState(["headlines"]),
+  },
+  created() {
+    this.$store.dispatch("loadHeadline");
+  },
 };
 </script>

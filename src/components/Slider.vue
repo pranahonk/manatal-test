@@ -11,9 +11,10 @@
           :key="key"
       >
         <v-card
-            elevation="4"
-            rounded="8"
+            elevation="2"
+            shaped
             class="mr-3 p-relative manatal-slider__card"
+            @click="getSelectedNews(n.title)"
         >
           <v-img
               lazy-src="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
@@ -22,6 +23,7 @@
               gradient="179.66deg, rgba(98, 98, 98, 0.35) 50%, #000000 99.7%"
               :src="handleImage(n.urlToImage)"
               error="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
+              class="manatal-slider__card-image"
           ></v-img>
           <p class="subtitle-2 manatal-slider__card-author">by {{setAuthor(n.author)}}</p>
           <p class="manatal-slider__card-title">{{n.title}}</p>
@@ -39,6 +41,9 @@
 </style>
 
 <script>
+import router from "@/router";
+import { getURLNews } from "@/helpers";
+
 export default {
   name: 'SliderHeadline',
   props: {
@@ -56,6 +61,9 @@ export default {
     },
     setAuthor(author) {
       return author ?? "Author"
+    },
+    getSelectedNews(title) {
+      router.push({ path: `/news/detail/${getURLNews(title)}` })
     },
   },
 };
