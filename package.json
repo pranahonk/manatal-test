@@ -13,7 +13,7 @@
     "core-js": "^3.8.3",
     "dotenv-webpack": "^7.1.0",
     "vue": "^2.6.14",
-    "vue-router": "^4.0.14",
+    "vue-router": "3.5.3",
     "vuetify": "^2.6.0",
     "vuex": "^4.0.2"
   },
