@@ -30,8 +30,8 @@
 
     <v-main>
       <v-container>
-        <h3 class="Manatal__headline">Headline News</h3>
-        <slider-headline />
+        <h3 class="Manatal__headline mb-2">Headline News</h3>
+        <slider-headline :headline-data="headlines" />
       </v-container>
     </v-main>
   </v-app>
@@ -42,18 +42,25 @@
 </style>
 
 <script>
+import axios from 'axios';
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import SliderHeadline from "@/components/Slider";
 
 export default {
   name: 'App',
-
+  created() {
+    axios
+        .get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.VUE_APP_API_KEY}`)
+        .then((response) => {
+          this.headlines = response.data.articles
+        })
+  },
   components: {
     SliderHeadline,
   },
 
   data: () => ({
-    //
+    headlines: null,
   }),
 };
 </script>
