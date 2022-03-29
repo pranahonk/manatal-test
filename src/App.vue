@@ -14,18 +14,10 @@
           transition="scale-transition"
           width="40"
         />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
       </div>
-
       <v-spacer></v-spacer>
+
+      <search-bar @searchText="valueSearch" @btnSearchPress="handleBtnSearch" />
     </v-app-bar>
     <router-view></router-view>
     <tab-bar />
@@ -39,10 +31,12 @@
 <script>
 import { mapState } from "vuex";
 import TabBar from "@/components/TabBar";
+import SearchBar from "@/components/SearchBar";
 
 export default {
   name: 'App',
   components: {
+    SearchBar,
     TabBar,
   },
   computed: {
@@ -54,6 +48,14 @@ export default {
   watch: {
     catTitle(newVal) {
       this.$store.dispatch("loadNewsCategory", newVal);
+    },
+  },
+  methods: {
+    valueSearch(val) {
+      console.log(val)
+    },
+    handleBtnSearch() {
+      console.log("clicked")
     },
   },
 };
