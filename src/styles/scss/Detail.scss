@@ -1,3 +1,5 @@
+@import "Mixin";
+
 .manatal{
   font-family: 'Newsreader', serif;
     &-detail{
@@ -26,36 +28,22 @@
         z-index: 1;
 
         &-date{
-          font-family: 'Newsreader', serif;
-          font-style: normal;
-          font-weight: 600;
-          font-size: 12px;
-          line-height: 19px;
+          @include manatal-title(600, 0, 24px, 12px);
           position: relative;
           top: 15px;
-          margin: 0 24px;
         }
 
         &-title{
-          font-family: 'Newsreader', serif;
-          font-style: normal;
-          font-weight: 700;
-          font-size: 16px;
-          line-height: 19px;
+          @include manatal-title(700, 0, 24px, 16px);
           position: relative;
           top: 5px;
-          margin: 0 24px;
         }
 
         &-author{
-          font-family: 'Newsreader', serif;
-          font-style: normal;
-          font-weight: 400;
-          font-size: 10px;
+          @include manatal-title(400, 0, 24px, 10px);
           color: #2E0505;
           position: relative;
           top: 0;
-          margin: 0 24px;
         }
       }
     }

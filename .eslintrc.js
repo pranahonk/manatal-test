@@ -35,5 +35,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "vue-filename-extension": "off",
     'import/extensions': "off",
+    "no-unused-vars": "off",
   },
 };

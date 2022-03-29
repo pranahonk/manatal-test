@@ -4,7 +4,8 @@
       max-width="700"
   >
     <v-slide-group
-        multiple
+        v-model="model"
+        mandatory
     >
       <v-slide-item
           v-for="n in categories"
@@ -17,7 +18,7 @@
             active-class="active white--text"
             depressed
             rounded
-            @click="toggle"
+            @click="()=>toggle"
         >
           {{ n }}
         </v-btn>
@@ -34,6 +35,16 @@ export default {
   }),
   props: {
     categories: Array,
+  },
+  watch: {
+    model(newVal) {
+      this.$store.dispatch('setCatTitle', this.categories[newVal])
+    },
+  },
+  methods: {
+    changevalue(e) {
+      console.log(e)
+    },
   },
 }
 </script>

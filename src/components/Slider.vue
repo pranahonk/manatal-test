@@ -14,7 +14,7 @@
             elevation="2"
             shaped
             class="mr-3 p-relative manatal-slider__card"
-            @click="getSelectedNews(n.title)"
+            @click="()=>getSelectedNews(n.title)"
         >
           <v-img
               lazy-src="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
@@ -70,11 +70,11 @@ export default {
   },
   filters: {
     setTruncate: (str, num) => {
-      if (str.length <= num) {
+      if (str?.length <= num) {
         return str
       }
 
-      return `${str.slice(0, num)}...`
+      return `${str?.slice(0, num)}...`
     },
   },
 };

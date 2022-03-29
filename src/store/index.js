@@ -11,6 +11,8 @@ export default new Vuex.Store({
     state: {
         headlines: [],
         idxNewsDetail: null,
+        categoriesData: [],
+        catTitle: null,
     },
 
     mutations: {
@@ -19,6 +21,12 @@ export default new Vuex.Store({
         },
         SET_NEWS_DETAIL(state, idx) {
             state.idxNewsDetail = idx
+        },
+        SET_NEWS_CATEGORIES(state, cat) {
+            state.categoriesData = cat
+        },
+        SET_CATEGORIES_TITLE(state, title) {
+            state.catTitle = title
         },
     }, // API request from endpoint
 
@@ -33,8 +41,25 @@ export default new Vuex.Store({
         },
         getNewsDetail: ({ commit, state }, payload) => {
             if (state.headlines.length) {
-                const indx = state.headlines.findIndex((x) => getURLNews(x.title) === payload);
-                commit('SET_NEWS_DETAIL', indx)
+                const indh = state.headlines.findIndex((x) => getURLNews(x.title) === payload);
+                console.log(state.categoriesData)
+                commit('SET_NEWS_DETAIL', indh)
+            }
+        },
+        setCatTitle: ({ commit }, payload) => {
+            commit('SET_CATEGORIES_TITLE', payload)
+        },
+        loadNewsCategory: ({ commit, state }, payload) => {
+            if (state.catTitle) {
+                axios
+                    .get(`https://newsapi.org/v2/top-headlines?category=${payload}&country=us&apiKey=${process.env.VUE_APP_API_KEY}`)
+                    .then((res) => {
+                        console.log(res.data.articles);
+                        commit('SET_NEWS_CATEGORIES', res.data.articles)
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    })
             }
         },
     }, // This field is required for reach our data on state
@@ -42,5 +67,7 @@ export default new Vuex.Store({
     getters: {
         getHeadline: (state) => state.headlines,
         getNewsDetailIdx: (state) => state.idxNewsDetail,
+        getCategories: (state) => state.categoriesData,
+        getCatTitle: (state) => state.catTitle,
     },
 });

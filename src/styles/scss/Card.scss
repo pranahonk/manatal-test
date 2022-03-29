@@ -1,0 +1,18 @@
+@import "Mixin";
+
+.manatal{
+  &-card{
+    &__title{
+      position: absolute;
+      top: 8px;
+      @include manatal-title(700, 0, 24px, 16px);
+      color: #FFFFFF;
+    }
+    &__row{
+      position: relative;
+      bottom: 30px;
+      @include manatal-title(100, 0, 24px, 15px);
+      color: #FFFFFF;
+    }
+  }
+}

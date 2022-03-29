@@ -42,10 +42,16 @@ import { mapState } from "vuex";
 export default {
   name: 'App',
   computed: {
-    ...mapState(["headlines"]),
+    ...mapState(["headlines", "catTitle"]),
   },
   created() {
     this.$store.dispatch("loadHeadline");
+    console.log(this.$route.name)
+  },
+  watch: {
+    catTitle(newVal) {
+      this.$store.dispatch("loadNewsCategory", newVal);
+    },
   },
 };
 </script>

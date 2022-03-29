@@ -4,7 +4,7 @@
       <v-img
           min-height="400"
           min-width="100%"
-          :src="getLink(selectedNews.urlToImage)"
+          :src="getLink(selectedNews)"
       >
       </v-img>
       <div class="manatal-detail__box">
@@ -15,7 +15,7 @@
           {{selectedNews.title}}
         </p>
         <p class="manatal-detail__box-author">
-          Publish by  {{selectedNews.author | setTruncate(40)}}
+          Publish by  {{ setAuthor(selectedNews.author) | setTruncate(40)}}
         </p>
       </div>
       <div class="manatal-detail__layout"></div>
@@ -65,6 +65,23 @@
         </div>
       </template>
     </div>
+    <div v-else>
+      <v-skeleton-loader
+          width="100%"
+          height="400"
+          type="image,
+          list-item-three-line,
+          list-item-three-line"
+          class="mt-15"
+      ></v-skeleton-loader>
+      <v-skeleton-loader
+          width="100%"
+          height="400"
+          type="
+          list-item-three-line,
+          list-item-three-line"
+      ></v-skeleton-loader>
+    </div>
   </div>
 </template>
 
@@ -74,6 +91,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import router from "@/router";
+import { getURLNews } from "@/helpers";
 
 export default {
   name: "DetailNews",
@@ -81,32 +100,40 @@ export default {
     selectedNews: null,
     isRender: false,
     isLoved: false,
+    idxHeadline: null,
   }),
   computed: {
     ...mapState(["headlines", "idxNewsDetail"]),
   },
   async created() {
-    if (this.headlines.length < 1) {
+    if (this.headlines?.length < 1) {
       await this.$store.dispatch("loadHeadline");
+      await this.$store.dispatch("loadNewsCategory");
     }
   },
   beforeMount() {
     const refreshIntervalId = setInterval(() => {
-      this.$store.dispatch("getNewsDetail", this.$attrs.id);
-      if (this.idxNewsDetail !== null) {
-        console.log(this.headlines[this.idxNewsDetail]);
-        this.selectedNews = this.headlines[this.idxNewsDetail];
+      this.idxHeadline = this.headlines.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
+      if (this.idxHeadline !== -1) {
+        console.log(this.headlines[this.idxHeadline])
+        this.selectedNews = this.headlines[this.idxHeadline];
         this.isRender = true;
         clearInterval(refreshIntervalId);
       }
     }, 100)
   },
+  mounted() {
+    console.log(this.headlines[this.idxHeadline])
+    // if (!this.headlines[this.idxHeadline]) {
+    //   router.push("/not-found")
+    // }
+  },
   methods: {
     getLink(e) {
-      if (e !== null) {
-        return e;
-      }
-      return null;
+      return e?.urlToImage || "https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
+    },
+    setAuthor(author) {
+      return author ?? "Author"
     },
   },
   filters: {
@@ -115,11 +142,11 @@ export default {
       return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     },
     setTruncate: (str, num) => {
-      if (str.length <= num) {
+      if (str?.length <= num) {
         return str
       }
 
-      return `${str.slice(0, num)}...`
+      return `${str?.slice(0, num)}...`
     },
   },
 }

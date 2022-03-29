@@ -1,0 +1,10 @@
+@mixin manatal-title($font-weight: 700, $margin-x: 0px,
+$margin-y: 24px, $font-size: 16px){
+  font-family: 'Newsreader', serif;
+  font-style: normal;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: 19px;
+  margin: $margin-x $margin-y;
+}
+

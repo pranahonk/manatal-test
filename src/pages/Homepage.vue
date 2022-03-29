@@ -5,6 +5,8 @@
       <slider-headline :headline-data="headlines" />
       <div class="mt-13"/>
       <optional-category :categories="categories" />
+      <br />
+      <card-news :categories-data="categoriesData" />
     </v-container>
   </v-main>
 </template>
@@ -13,6 +15,7 @@
 import { mapState } from 'vuex'
 import SliderHeadline from "@/components/Slider.vue";
 import optionalCategory from "@/components/Option.vue";
+import CardNews from "@/components/Card.vue";
 
 export default {
   name: "HomepageNews",
@@ -22,9 +25,10 @@ export default {
   components: {
     SliderHeadline,
     optionalCategory,
+    CardNews,
   },
   computed: {
-    ...mapState(["headlines"]),
+    ...mapState(["headlines", "categoriesData"]),
   },
 
 }
