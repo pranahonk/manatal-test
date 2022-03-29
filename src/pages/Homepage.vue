@@ -30,7 +30,9 @@ export default {
   computed: {
     ...mapState(["headlines", "categoriesData"]),
   },
-
+  beforeMount() {
+    this.$store.dispatch("setTabBar", 'home')
+  },
 }
 </script>
 

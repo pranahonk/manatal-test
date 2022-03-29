@@ -36,5 +36,6 @@ module.exports = {
     "vue-filename-extension": "off",
     'import/extensions': "off",
     "no-unused-vars": "off",
+    'max-len': "off",
   },
 };

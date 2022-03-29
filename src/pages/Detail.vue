@@ -4,8 +4,7 @@
       <v-img
           min-height="400"
           min-width="100%"
-          :src="getLink(selectedNews)"
-      >
+          :src="getLink(selectedNews)">
       </v-img>
       <div class="manatal-detail__box">
         <p class="manatal-detail__box-date">
@@ -45,34 +44,15 @@
           Assumenda consequatur doloremque eius magni nulla omnis repellendus.
         </div>
       </v-container>
-      <template>
-        <div class="text-center">
-          <v-card-text style="height: 100px; position: relative">
-            <v-fab-transition>
-              <v-btn
-                  :color="isLoved ? '#FF3A44' : 'grey' "
-                  dark
-                  fixed
-                  bottom
-                  right
-                  fab
-                  @click="isLoved = !isLoved"
-              >
-                <v-icon >mdi-heart</v-icon>
-              </v-btn>
-            </v-fab-transition>
-          </v-card-text>
-        </div>
-      </template>
     </div>
     <div v-else>
       <v-skeleton-loader
+          class="mt-15"
           width="100%"
           height="400"
           type="image,
           list-item-three-line,
           list-item-three-line"
-          class="mt-15"
       ></v-skeleton-loader>
       <v-skeleton-loader
           width="100%"
@@ -101,32 +81,50 @@ export default {
     isRender: false,
     isLoved: false,
     idxHeadline: null,
+    idxCategory: null,
+    counter: 0,
   }),
   computed: {
-    ...mapState(["headlines", "idxNewsDetail"]),
+    ...mapState(["headlines", "categoriesData"]),
   },
   async created() {
     if (this.headlines?.length < 1) {
       await this.$store.dispatch("loadHeadline");
-      await this.$store.dispatch("loadNewsCategory");
+    }
+
+    if (this.$attrs.category) {
+      await this.$store.dispatch("setCatTitle", this.$attrs.category);
+      await this.$store.dispatch("loadNewsCategory", this.$attrs.category);
     }
   },
   beforeMount() {
     const refreshIntervalId = setInterval(() => {
       this.idxHeadline = this.headlines.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
+      // eslint-disable-next-line max-len
+      this.idxCategory = this.categoriesData.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
+
+      this.counter += 1
+
       if (this.idxHeadline !== -1) {
-        console.log(this.headlines[this.idxHeadline])
         this.selectedNews = this.headlines[this.idxHeadline];
+        this.isRender = true;
+        clearInterval(refreshIntervalId);
+      } else if (this.idxCategory !== -1) {
+        this.selectedNews = this.categoriesData[this.idxCategory]
         this.isRender = true;
         clearInterval(refreshIntervalId);
       }
     }, 100)
+
+    this.$store.dispatch("setTabBar", 'favorite')
+    this.$store.dispatch("setHistory", { id: this.$route.params.id, path: this.$route.path })
   },
-  mounted() {
-    console.log(this.headlines[this.idxHeadline])
-    // if (!this.headlines[this.idxHeadline]) {
-    //   router.push("/not-found")
-    // }
+  watch: {
+    counter(val) {
+      if (val === 100) {
+        router.push("/not-found")
+      }
+    },
   },
   methods: {
     getLink(e) {

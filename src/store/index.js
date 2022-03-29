@@ -13,6 +13,8 @@ export default new Vuex.Store({
         idxNewsDetail: null,
         categoriesData: [],
         catTitle: null,
+        setTabBar: null,
+        history: [],
     },
 
     mutations: {
@@ -27,6 +29,13 @@ export default new Vuex.Store({
         },
         SET_CATEGORIES_TITLE(state, title) {
             state.catTitle = title
+        },
+        SET_TAB_BAR(state, title) {
+            state.setTabBar = title
+        },
+        SET_HISTORY(state, item) {
+            const filteredItems = state.history.findIndex((x) => x.id === item.id);
+            if (filteredItems === -1) state.history.push(item)
         },
     }, // API request from endpoint
 
@@ -62,7 +71,13 @@ export default new Vuex.Store({
                     })
             }
         },
-    }, // This field is required for reach our data on state
+        setTabBar: ({ commit }, payload) => {
+            commit('SET_TAB_BAR', payload)
+        },
+        setHistory: ({ commit }, payload) => {
+            commit('SET_HISTORY', payload)
+        },
+    },
 
     getters: {
         getHeadline: (state) => state.headlines,

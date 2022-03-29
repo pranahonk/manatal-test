@@ -18,7 +18,7 @@
             active-class="active white--text"
             depressed
             rounded
-            @click="()=>toggle"
+            @click="toggle"
         >
           {{ n }}
         </v-btn>

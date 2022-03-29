@@ -1,0 +1,110 @@
+$primary: transparent;
+
+input[type=radio]{
+  display: none;
+
+  &:checked + label {
+    &:before {
+      transform: translateY(0) scale(1);
+      transition: transform 200ms 100ms ease;
+    }
+    span {
+      animation: scaleanim 200ms ease;
+    }
+  }
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  height: 66px;
+  width: 100%;
+  max-width: 289px;
+  display: flex;
+  justify-content: space-around;
+  background: #ffffff;
+  box-shadow: 8px 11px 4px rgb(140 140 140 / 15%);
+  padding-bottom: 10px;
+  right: 50%;
+  transform: translate(50%, -50%);
+  border-radius: 32px;
+  label {
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    transform: translateY(6px);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      background: linear-gradient(119.65deg, #ff3a4487 0%, #FF8086 128.41%);
+      border-radius: 100%;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: translateY(16px) scale(0);
+    }
+  }
+
+  span {
+    font-size: 20px;
+  }
+}
+
+.cursor {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  height: 64px;
+  width: 64px;
+  background: $primary;
+  border-radius: 0 0 100% 100%;
+  z-index: 1;
+  transition: transform 300ms ease;
+
+  svg {
+    position: absolute;
+    top: 12px;
+    fill: $primary;
+
+    &:first-child {
+      right: calc(100% - 1px);
+      transform: scaleX(-1);
+    }
+
+    &:last-child {
+      left: calc(100% - 1px);
+    }
+  }
+}
+
+#item-1:checked ~ .cursor {
+  transform: translateX(calc(100% - 48px))
+}
+
+#item-2:checked ~ .cursor {
+  transform: translateX(calc(100% + 45px));
+}
+
+#item-3:checked ~ .cursor {
+  transform:translateX(calc(100% + 139px));
+}
+
+#item-4:checked ~ .cursor {
+  transform: translateX(calc(100% + 233px));
+}
+
+@keyframes scaleanim {
+  0%, 100% { transform: scale(1); }
+  40%   { transform: scale(0.4); }
+  60% { transform: scale(1.2)}
+}

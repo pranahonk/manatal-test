@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import router from "@/router";
 import { getURLNews } from "@/helpers";
 
@@ -48,8 +49,11 @@ export default {
   props: {
     categoriesData: Array,
   },
+  computed: {
+    ...mapState(["catTitle"]),
+  },
   watch: {
-    categoriesData(newVal, oldVal) {
+    catTitle(newVal, oldVal) {
       console.log(newVal, oldVal)
     },
   },
@@ -58,7 +62,7 @@ export default {
       return author ?? "Author"
     },
     getSelectedNews(title) {
-      router.push({ path: `/news/detail/${getURLNews(title)}` })
+      router.push({ path: `/news/${this.catTitle}/${getURLNews(title)}/` })
     },
   },
   filters: {

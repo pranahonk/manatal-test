@@ -27,8 +27,8 @@
 
       <v-spacer></v-spacer>
     </v-app-bar>
-
     <router-view></router-view>
+    <tab-bar />
   </v-app>
 </template>
 
@@ -38,15 +38,18 @@
 
 <script>
 import { mapState } from "vuex";
+import TabBar from "@/components/TabBar";
 
 export default {
   name: 'App',
+  components: {
+    TabBar,
+  },
   computed: {
     ...mapState(["headlines", "catTitle"]),
   },
   created() {
     this.$store.dispatch("loadHeadline");
-    console.log(this.$route.name)
   },
   watch: {
     catTitle(newVal) {
