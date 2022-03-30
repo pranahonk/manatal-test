@@ -6,6 +6,20 @@ https://www.linkedin.com/in/prana-wijaya/
 if you want to see my portfolio [My Portfolio](https://prana-wijaya.netlify.app/portfolio)
 
 
+### Screenshot of the interface ###
+![1](C:\webstormProject\manatal-test\src\assets\screenshot_1.png)
+
+![1](C:\webstormProject\manatal-test\src\assets\Screenshot_2.png)
+
+![1](C:\webstormProject\manatal-test\src\assets\Screenshot_3.png)
+
+![1](C:\webstormProject\manatal-test\src\assets\Screenshot_4.png)
+
+![1](C:\webstormProject\manatal-test\src\assets\Screenshot_5.png)
+
+![1](C:\webstormProject\manatal-test\src\assets\Screenshot_6.png)
+
+![1](C:\webstormProject\manatal-test\src\assets\Screenshot_7.png)
 
 ## Project setup
 ```
@@ -25,6 +39,11 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### Env
+```
+file attached 
 ```
 
 ### Customize configuration

@@ -14,7 +14,7 @@
           {{selectedNews.title}}
         </p>
         <p class="manatal-detail__box-author">
-          Publish by  {{ setAuthor(selectedNews.author) | setTruncate(40)}}
+          Publish by  {{ setAuthor(selectedNews.author) | setTruncate(30)}}
         </p>
       </div>
       <div class="manatal-detail__layout"></div>
