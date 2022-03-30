@@ -17,7 +17,7 @@
           gradient="180deg, rgba(98, 98, 98, 0.35) 50%, #000000 100%"
       ></v-img>
       <p class="manatal-card__title">
-        {{data.title}}
+        {{data.title | setTruncate(150)}}
       </p>
       <v-row
           no-gutters
@@ -62,7 +62,11 @@ export default {
       return author ?? "Author"
     },
     getSelectedNews(title) {
-      router.push({ path: `/news/${this.catTitle}/${getURLNews(title)}/` })
+      if (this.$route.name === "Search Result" && this.$route?.params?.id.length > 0) {
+          router.push({ path: `/news/search/${getURLNews(title)}/` })
+      } else {
+        router.push({ path: `/news/${this.catTitle}/${getURLNews(title)}/` })
+      }
     },
   },
   filters: {

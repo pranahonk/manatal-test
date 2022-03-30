@@ -15,6 +15,7 @@ export default new Vuex.Store({
         catTitle: null,
         setTabBar: null,
         history: [],
+        searchResult: [],
     },
 
     mutations: {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
         SET_HISTORY(state, item) {
             const filteredItems = state.history.findIndex((x) => x.id === item.id);
             if (filteredItems === -1) state.history.push(item)
+        },
+        SET_NEWS_SEARCH(state, result) {
+            state.searchResult = result
         },
     }, // API request from endpoint
 
@@ -76,6 +80,17 @@ export default new Vuex.Store({
         },
         setHistory: ({ commit }, payload) => {
             commit('SET_HISTORY', payload)
+        },
+        loadNewsSearch: ({ commit, state }, payload) => {
+            axios
+                .get(`https://newsapi.org/v2/top-headlines?q=${payload}&apiKey=${process.env.VUE_APP_API_KEY}`)
+                .then((res) => {
+                    console.log(res.data.articles);
+                    commit('SET_NEWS_SEARCH', res.data.articles)
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         },
     },
 

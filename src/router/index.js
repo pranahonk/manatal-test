@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Detail from '../pages/Detail.vue';
 import Home from '../pages/Homepage.vue';
-import History from '../pages/History';
+import History from '../pages/History'
+import Result from '../pages/SearchResult';
 import notFound from '../pages/404.vue'
 
 Vue.use(Router);
@@ -23,7 +24,13 @@ export default new Router({
         },
         {
             path: "/news/:category/:id",
-            name: 'Detail',
+            name: 'Detail Category',
+            component: Detail,
+            props: true,
+        },
+        {
+            path: "/search/:id",
+            name: 'Detail Search',
             component: Detail,
             props: true,
         },
@@ -31,6 +38,12 @@ export default new Router({
             path: "/news/history",
             name: 'History',
             component: History,
+            props: true,
+        },
+        {
+            path: "/search/result/:id",
+            name: 'Search Result',
+            component: Result,
             props: true,
         },
         {

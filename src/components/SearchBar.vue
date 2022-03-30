@@ -1,10 +1,10 @@
 <template>
   <div class="wrap">
     <div class="search">
-      <input type="text" class="searchTerm"  v-model="searchText" placeholder="What are you looking for?">
-      <button type="submit" class="searchButton" @click.prevent="handleClick">
+      <input type="text" class="searchTerm"  v-model="searchText" placeholder="What are you looking for?" @keyup.enter.prevent="handleClick">
+      <button type="submit" class="searchButton" @click.prevent="handleClick" >
         <v-icon
-            large
+            medium
             color="#FF3A44"
         >
           mdi-magnify
@@ -27,8 +27,15 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit('btnSearchPress')
+      if (!(this.$route.name === "Search Result")) {
+        this.$emit('btnSearchPress')
+      }
     },
+  },
+  mounted() {
+    if (this.$route.name === "Search Result" && this.$route.params.id) {
+      this.searchText = this.$route.params.id
+    }
   },
 }
 </script>
@@ -44,7 +51,7 @@ export default {
   width: 102%;
   border: 1px solid #F0F1FA;
   border-right: none;
-  padding: 5px;
+  padding: 0 15px;
   height: 36px;
   border-radius: 16px 0 0 16px;
   outline: none;

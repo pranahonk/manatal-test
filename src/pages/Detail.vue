@@ -59,6 +59,7 @@
           height="400"
           type="
           list-item-three-line,
+          list-item-three-line,
           list-item-three-line"
       ></v-skeleton-loader>
     </div>
@@ -82,10 +83,12 @@ export default {
     isLoved: false,
     idxHeadline: null,
     idxCategory: null,
+    idxSearch: null,
     counter: 0,
+    refreshIntervalId: null,
   }),
   computed: {
-    ...mapState(["headlines", "categoriesData"]),
+    ...mapState(["headlines", "categoriesData", "searchResult"]),
   },
   async created() {
     if (this.headlines?.length < 1) {
@@ -98,21 +101,32 @@ export default {
     }
   },
   beforeMount() {
-    const refreshIntervalId = setInterval(() => {
-      this.idxHeadline = this.headlines.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
-      // eslint-disable-next-line max-len
-      this.idxCategory = this.categoriesData.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
-
+    this.refreshIntervalId = setInterval(() => {
       this.counter += 1
 
-      if (this.idxHeadline !== -1) {
-        this.selectedNews = this.headlines[this.idxHeadline];
-        this.isRender = true;
-        clearInterval(refreshIntervalId);
-      } else if (this.idxCategory !== -1) {
-        this.selectedNews = this.categoriesData[this.idxCategory]
-        this.isRender = true;
-        clearInterval(refreshIntervalId);
+      if (this.$route.name === 'Detail Category') {
+        if (this.$route.params.category === "search") {
+          this.idxSearch = this.searchResult.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
+          if (this.idxSearch !== -1) {
+            this.selectedNews = this.searchResult[this.idxSearch]
+            this.isRender = true;
+            clearInterval(this.refreshIntervalId);
+          }
+        } else {
+          this.idxCategory = this.categoriesData.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
+          if (this.idxCategory !== -1) {
+            this.selectedNews = this.categoriesData[this.idxCategory]
+            this.isRender = true;
+            clearInterval(this.refreshIntervalId);
+          }
+        }
+      } else if (this.$route.name === 'Detail') {
+        this.idxHeadline = this.headlines.findIndex((x) => getURLNews(x.title) === this.$attrs.id);
+          if (this.idxHeadline !== -1) {
+            this.selectedNews = this.headlines[this.idxHeadline];
+            this.isRender = true;
+            clearInterval(this.refreshIntervalId);
+          }
       }
     }, 100)
 
@@ -122,7 +136,9 @@ export default {
   watch: {
     counter(val) {
       if (val === 100) {
-        router.push("/not-found")
+        console.log(val)
+        clearInterval(this.refreshIntervalId);
+        router.push({ path: "/not-found" })
       }
     },
   },

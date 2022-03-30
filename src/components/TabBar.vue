@@ -61,8 +61,9 @@ export default {
         router.push({ path: "/" })
       } else if (val === "history" && this.$route.name !== "History") {
         router.push({ path: "/news/history" })
-      } else if (val === "favorite" && this.$route.name !== "Detail") {
-        router.push({ path: `/news/detail/${getURLNews(this.headlines[0].title)}` })
+        // eslint-disable-next-line no-mixed-operators
+      } else if (val === "favorite" && (this.$route.name !== "Detail" && this.$route.name !== "Detail Category")) {
+          router.push({ path: `/news/detail/${getURLNews(this.headlines[0].title)}` })
       }
     },
     setTabBar(val) {

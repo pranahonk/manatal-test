@@ -32,6 +32,7 @@
 import { mapState } from "vuex";
 import TabBar from "@/components/TabBar";
 import SearchBar from "@/components/SearchBar";
+import router from "@/router";
 
 export default {
   name: 'App',
@@ -39,6 +40,9 @@ export default {
     SearchBar,
     TabBar,
   },
+  data: () => ({
+    searchText: null,
+  }),
   computed: {
     ...mapState(["headlines", "catTitle"]),
   },
@@ -52,10 +56,13 @@ export default {
   },
   methods: {
     valueSearch(val) {
-      console.log(val)
+      this.searchText = val;
     },
     handleBtnSearch() {
-      console.log("clicked")
+      if (this.searchText.length) {
+        router.push({ path: `/search/result/${this.searchText}` })
+        this.$store.dispatch("loadNewsSearch", this.searchText);
+      }
     },
   },
 };
