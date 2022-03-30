@@ -41,11 +41,6 @@ export default {
       this.$store.dispatch('setCatTitle', this.categories[newVal])
     },
   },
-  methods: {
-    changevalue(e) {
-      console.log(e)
-    },
-  },
 }
 </script>
 

@@ -1,7 +1,16 @@
 @import "Mixin";
+@import "media";
 
 .manatal{
   &-card{
+    max-width: 700px;
+    margin: 0 auto;
+
+    @include respond(xsmall) {
+      height: 128px;
+
+    }
+
     &__title{
       position: absolute;
       top: 8px;

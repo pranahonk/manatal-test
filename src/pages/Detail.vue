@@ -18,31 +18,28 @@
         </p>
       </div>
       <div class="manatal-detail__layout"></div>
-      <v-container class="mt-16">
-        <div class="mt-3">
-          {{selectedNews.description}}
+      <v-container >
+        <div class="manatal-detail__layout-text my-16">
+          <div class="mt-3">
+            {{selectedNews.description}}
+          </div>
+          <br />
+          <span v-for="n in 10" :key="n">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ex ultrices, vulputate nisi eu, suscipit magna. Nam sed sollicitudin eros, at pulvinar massa. Ut blandit euismod magna, vitae ornare enim molestie eget. Aliquam sit amet mi eget quam molestie tristique commodo sed ante. Proin vulputate congue lectus, eget ultrices ligula malesuada quis. Nulla enim quam, lobortis non tortor eu, elementum euismod ex. Mauris at lacus euismod, mattis nunc sit amet, finibus ante. Donec eu arcu ut justo vestibulum vestibulum. Donec cursus orci metus, ut faucibus tortor facilisis eu. Suspendisse velit velit, laoreet eget justo sed, interdum congue libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+              Integer orci orci, cursus eu ex eu, mollis iaculis ipsum. Donec eu sem mi. Suspendisse placerat, nulla vitae posuere pharetra, odio purus maximus tellus, id luctus risus nisl aliquet ipsum. Morbi ut convallis sem, quis sollicitudin mi. Fusce sodales varius metus, tincidunt pretium quam mollis ut. In velit turpis, finibus a porttitor quis, lobortis dictum enim. Maecenas gravida justo et urna ornare, at feugiat mi fermentum. Phasellus et dictum libero. Phasellus aliquet lorem in nisi eleifend sollicitudin. Etiam eget turpis mauris. Curabitur molestie orci turpis, id tincidunt tellus finibus sit amet.
+
+              Nunc fermentum orci orci, sit amet elementum lacus gravida vitae. Morbi fermentum ex et eros faucibus, pharetra ultricies erat accumsan. Sed diam metus, aliquet ut dictum nec, sodales eu magna. Praesent eget posuere leo, eu pharetra odio. Phasellus id euismod leo. Morbi hendrerit luctus turpis sit amet hendrerit. Suspendisse laoreet leo eget orci sagittis finibus. Mauris eu ante sit amet quam ullamcorper mollis quis quis ex. Vivamus orci risus, dignissim ac posuere nec, ornare vel libero.
+
+              Fusce eu porttitor mauris. Pellentesque pretium risus eget nisl volutpat faucibus. Phasellus ultrices, enim sed lobortis luctus, sem turpis tempor ex, nec suscipit nisi massa quis sapien. Sed cursus magna eget aliquet blandit. Sed malesuada egestas elementum. Vivamus eget ante posuere lorem pellentesque gravida sit amet eget purus. Fusce ullamcorper erat a purus elementum, sit amet sodales lacus elementum. Aenean arcu sapien, malesuada ac egestas non, mollis imperdiet erat. Aenean vehicula purus eleifend nisl vestibulum mattis.
+
+              Donec ut risus accumsan mauris auctor consequat interdum vitae ante. Mauris vehicula ut diam condimentum iaculis. Mauris fringilla maximus purus ac pharetra. Nulla et nisi vel ex cursus pellentesque. Maecenas nec arcu vel ligula consectetur elementum. Integer semper lacus nulla, et feugiat lacus porttitor consectetur. Nullam sapien leo, iaculis sed mollis et, suscipit vitae sapien. Ut ac euismod leo. Pellentesque varius turpis eu neque pellentesque finibus. Quisque quis gravida libero. Nullam vehicula at erat et condimentum. Vestibulum enim arcu, varius eu eleifend quis, volutpat sit amet augue. Phasellus dictum mauris orci, a convallis purus luctus non. Ut ut sem ac diam volutpat mollis.
         </div>
-        <br />
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aspernatur
-          beatae consequatur consequuntur eaque eligendi,
-          fugit modi quo ut vitae voluptas, voluptate.
-          Assumenda consequatur doloremque eius magni nulla omnis repellendus.
+           <br />
+        </span>
         </div>
-        <br />
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aspernatur
-          beatae consequatur consequuntur eaque eligendi,
-          fugit modi quo ut vitae voluptas, voluptate.
-          Assumenda consequatur doloremque eius magni nulla omnis repellendus.
-        </div>
-        <br />
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aspernatur
-          beatae consequatur consequuntur eaque eligendi,
-          fugit modi quo ut vitae voluptas, voluptate.
-          Assumenda consequatur doloremque eius magni nulla omnis repellendus.
-        </div>
+
       </v-container>
     </div>
     <div v-else>
@@ -136,7 +133,6 @@ export default {
   watch: {
     counter(val) {
       if (val === 100) {
-        console.log(val)
         clearInterval(this.refreshIntervalId);
         router.push({ path: "/not-found" })
       }

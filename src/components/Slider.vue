@@ -5,6 +5,7 @@
   >
     <v-slide-group
         multiple
+        show-arrows="desktop"
     >
       <v-slide-item
           v-for="(n, key) in headlineData"
@@ -19,7 +20,6 @@
           <v-img
               lazy-src="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"
               height="300px"
-              width="80vw"
               gradient="179.66deg, rgba(98, 98, 98, 0.35) 50%, #000000 99.7%"
               :src="handleImage(n.urlToImage)"
               error="https://via.placeholder.com/728x728.png?text=Manatal+Placeholder"

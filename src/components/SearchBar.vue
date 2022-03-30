@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleClick() {
-      if (!(this.$route.name === "Search Result")) {
+      if (!(this.$route.params.id === this.searchText)) {
         this.$emit('btnSearchPress')
       }
     },
@@ -79,7 +79,7 @@ export default {
 /*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 100%;
-  max-width: 264px;
+  max-width: 60vw;
   position: absolute;
   top: 50%;
   left: 50%;

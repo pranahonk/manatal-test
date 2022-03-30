@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="manatal-card">
     <v-card
         elevation="2"
         shaped

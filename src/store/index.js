@@ -48,14 +48,12 @@ export default new Vuex.Store({
             axios
                 .get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.VUE_APP_API_KEY}`)
                 .then((response) => {
-                    console.log(response)
                     commit("SET_HEADLINES", response.data.articles);
                 });
         },
         getNewsDetail: ({ commit, state }, payload) => {
             if (state.headlines.length) {
                 const indh = state.headlines.findIndex((x) => getURLNews(x.title) === payload);
-                console.log(state.categoriesData)
                 commit('SET_NEWS_DETAIL', indh)
             }
         },
@@ -67,7 +65,6 @@ export default new Vuex.Store({
                 axios
                     .get(`https://newsapi.org/v2/top-headlines?category=${payload}&country=us&apiKey=${process.env.VUE_APP_API_KEY}`)
                     .then((res) => {
-                        console.log(res.data.articles);
                         commit('SET_NEWS_CATEGORIES', res.data.articles)
                     })
                     .catch((err) => {
@@ -85,7 +82,6 @@ export default new Vuex.Store({
             axios
                 .get(`https://newsapi.org/v2/top-headlines?q=${payload}&apiKey=${process.env.VUE_APP_API_KEY}`)
                 .then((res) => {
-                    console.log(res.data.articles);
                     commit('SET_NEWS_SEARCH', res.data.articles)
                 })
                 .catch((err) => {
